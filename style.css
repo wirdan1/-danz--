@@ -1,4 +1,4 @@
-/* --- Global Styles --- */
+/* --- Reset & Global Styles --- */
 * {
     margin: 0;
     padding: 0;
@@ -8,19 +8,9 @@
 
 body {
     background-color: #121212;
-    color: #f1c40f; /* Warna aksen kuning */
+    color: #f1c40f;
     transition: all 0.3s ease-in-out;
-}
-
-/* --- Animasi Fade-in saat halaman dimuat --- */
-.fade-in {
-    opacity: 0;
-    animation: fadeIn 0.8s ease-in forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    text-align: center;
 }
 
 /* --- Navbar Styling --- */
@@ -50,7 +40,7 @@ body {
     border-radius: 5px;
 }
 
-/* --- Menu Button (Titik Tiga) --- */
+/* --- Menu Responsive --- */
 .menu-btn {
     font-size: 30px;
     cursor: pointer;
@@ -58,7 +48,6 @@ body {
     display: none;
 }
 
-/* --- Menu Responsive --- */
 .menu {
     display: flex;
     gap: 20px;
@@ -89,7 +78,7 @@ body {
 
 /* --- Container Utama --- */
 .container {
-    max-width: 900px;
+    max-width: 90%;
     margin: 100px auto 50px;
     padding: 20px;
     background: #1c1c1c;
@@ -97,28 +86,38 @@ body {
     box-shadow: 0px 4px 10px rgba(255, 255, 0, 0.3);
 }
 
-/* --- Header Styling --- */
-h1 {
-    font-size: 28px;
-    text-align: center;
-    margin-bottom: 20px;
-    animation: slideIn 1s ease-in-out;
+/* --- Profil Styling --- */
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
 }
 
-@keyframes slideIn {
-    from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+.profile img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #f1c40f;
+    box-shadow: 0px 4px 10px rgba(255, 255, 0, 0.3);
 }
 
-/* --- Text Animasi Masuk --- */
-.animated-text {
-    opacity: 0;
-    animation: fadeInText 1.5s ease-in forwards;
-}
+/* --- Responsif untuk HP --- */
+@media (max-width: 768px) {
+    .profile img {
+        width: 90px;
+        height: 90px;
+        border: 3px solid #f1c40f;
+    }
 
-@keyframes fadeInText {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    h1 {
+        font-size: 24px;
+    }
+
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
 }
 
 /* --- Tabel Styling --- */
@@ -141,32 +140,6 @@ h1 {
     color: #121212;
 }
 
-/* --- Profil dengan Bingkai Bulat & Pusat --- */
-.profile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px; /* Jarak dari atas */
-}
-
-.profile img {
-    width: 120px; /* Ukuran lebih kecil untuk HP */
-    height: 120px;
-    border-radius: 50%;
-    border: 4px solid #f1c40f;
-    box-shadow: 0px 4px 10px rgba(255, 255, 0, 0.3);
-    animation: zoomIn 1s ease-in-out;
-}
-
-/* --- Responsif untuk HP --- */
-@media (max-width: 768px) {
-    .profile img {
-        width: 100px;
-        height: 100px;
-        border: 3px solid #f1c40f;
-    }
-}
-
 /* --- List Styling --- */
 ul {
     list-style-type: square;
@@ -184,35 +157,4 @@ canvas {
     background: #1c1c1c;
     padding: 10px;
     border-radius: 8px;
-}
-
-/* --- Animasi Smooth Panel Menu --- */
-.sidebar {
-    position: fixed;
-    top: 0;
-    right: -250px;
-    width: 250px;
-    height: 100%;
-    background: #222;
-    transition: right 0.3s ease-in-out;
-    padding-top: 20px;
-}
-
-.sidebar.show {
-    right: 0;
-}
-
-/* --- Panel Tutup di Klik --- */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: none;
-}
-
-.overlay.show {
-    display: block;
     }
