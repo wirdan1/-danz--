@@ -121,28 +121,6 @@ h1 {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Profil dengan Bingkai Bulat --- */
-.profile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.profile img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 5px solid #f1c40f;
-    box-shadow: 0px 4px 10px rgba(255, 255, 0, 0.3);
-    animation: zoomIn 1s ease-in-out;
-}
-
-@keyframes zoomIn {
-    from { transform: scale(0.5); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
 /* --- Tabel Styling --- */
 .tech-table {
     width: 100%;
@@ -161,6 +139,32 @@ h1 {
 .tech-table th {
     background: #f1c40f;
     color: #121212;
+}
+
+/* --- Profil dengan Bingkai Bulat & Pusat --- */
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px; /* Jarak dari atas */
+}
+
+.profile img {
+    width: 120px; /* Ukuran lebih kecil untuk HP */
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #f1c40f;
+    box-shadow: 0px 4px 10px rgba(255, 255, 0, 0.3);
+    animation: zoomIn 1s ease-in-out;
+}
+
+/* --- Responsif untuk HP --- */
+@media (max-width: 768px) {
+    .profile img {
+        width: 100px;
+        height: 100px;
+        border: 3px solid #f1c40f;
+    }
 }
 
 /* --- List Styling --- */
@@ -182,45 +186,33 @@ canvas {
     border-radius: 8px;
 }
 
-/* --- Styling Halaman Proyek --- */
-.project-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-top: 20px;
+/* --- Animasi Smooth Panel Menu --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 250px;
+    height: 100%;
+    background: #222;
+    transition: right 0.3s ease-in-out;
+    padding-top: 20px;
 }
 
-.project-card {
-    background: #1c1c1c;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(255, 255, 0, 0.3);
-    transition: 0.3s;
+.sidebar.show {
+    right: 0;
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
+/* --- Panel Tutup di Klik --- */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
 }
 
-.project-card h2 {
-    color: #f1c40f;
-}
-
-.project-card p {
-    color: #ddd;
-}
-
-.btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 15px;
-    background: #f1c40f;
-    color: #121212;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: #e1b800;
+.overlay.show {
+    display: block;
 }
