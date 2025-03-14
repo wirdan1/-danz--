@@ -1,0 +1,183 @@
+/* --- Global Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #f1c40f; /* Warna aksen kuning */
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- Animasi Fade-in saat halaman dimuat --- */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* --- Navbar Styling --- */
+.navbar {
+    background-color: #1c1c1c;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar a {
+    color: #f1c40f;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #333;
+    border-radius: 5px;
+}
+
+/* --- Menu Button (Titik Tiga) --- */
+.menu-btn {
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    display: none;
+}
+
+/* --- Menu Responsive --- */
+.menu {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .menu {
+        display: none;
+        flex-direction: column;
+        background: #1c1c1c;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 10px;
+        box-shadow: 0px 4px 6px rgba(0,0,0,0.5);
+    }
+
+    .menu a {
+        display: block;
+        padding: 10px;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+}
+
+/* --- Container Utama --- */
+.container {
+    max-width: 900px;
+    margin: 100px auto 50px;
+    padding: 20px;
+    background: #1c1c1c;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 0, 0.3);
+}
+
+/* --- Header Styling --- */
+h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- Text Animasi Masuk --- */
+.animated-text {
+    opacity: 0;
+    animation: fadeInText 1.5s ease-in forwards;
+}
+
+@keyframes fadeInText {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Tabel Styling --- */
+.tech-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: #222;
+    color: white;
+    text-align: left;
+}
+
+.tech-table th, .tech-table td {
+    padding: 12px;
+    border-bottom: 1px solid #f1c40f;
+}
+
+.tech-table th {
+    background: #f1c40f;
+    color: #121212;
+}
+
+/* --- Profil dengan Bingkai Bulat --- */
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid #f1c40f;
+    box-shadow: 0px 4px 10px rgba(255, 255, 0, 0.3);
+    animation: zoomIn 1s ease-in-out;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* --- List Styling --- */
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+ul li {
+    margin: 5px 0;
+}
+
+/* --- Grafik Styling --- */
+canvas {
+    margin-top: 20px;
+    background: #1c1c1c;
+    padding: 10px;
+    border-radius: 8px;
+}
