@@ -8,7 +8,7 @@
 
 body {
     background-color: #121212;
-    color: #ffffff; /* Warna teks putih */
+    color: #f1c40f; /* Warna aksen kuning */
     transition: all 0.3s ease-in-out;
 }
 
@@ -38,7 +38,7 @@ body {
 }
 
 .navbar a {
-    color: #ffffff;
+    color: #f1c40f;
     text-decoration: none;
     font-size: 18px;
     padding: 10px 15px;
@@ -46,7 +46,7 @@ body {
 }
 
 .navbar a:hover {
-    background-color: #444;
+    background-color: #333;
     border-radius: 5px;
 }
 
@@ -58,7 +58,7 @@ body {
     display: none;
 }
 
-/* --- Sidebar Menu Responsif --- */
+/* --- Menu Responsive --- */
 .sidebar {
     position: fixed;
     top: 0;
@@ -90,47 +90,19 @@ body {
 /* --- Container Utama --- */
 .container {
     max-width: 900px;
-    margin: 120px auto 50px;
+    margin: 100px auto 50px;
     padding: 20px;
     background: #1c1c1c;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 4px 10px rgba(255, 255, 0, 0.3);
     text-align: center;
-}
-
-/* --- Jarak antara Profil & Sambutan --- */
-.profile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px; /* Tambah jarak lebih jauh */
-    margin-bottom: 30px; /* Tambah jarak sebelum teks sambutan */
-}
-
-.profile-image {
-    width: 130px; /* Lebih besar */
-    height: 130px;
-    max-width: 100%;
-    border-radius: 50%;
-    border: 4px solid #ffffff; /* Warna border putih */
-    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
-    animation: zoomIn 1s ease-in-out;
-}
-
-/* --- Responsif untuk HP --- */
-@media (max-width: 768px) {
-    .profile-image {
-        width: 110px;
-        height: 110px;
-        border: 3px solid #ffffff;
-    }
 }
 
 /* --- Header Styling --- */
 h1 {
-    font-size: 30px;
+    font-size: 28px;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     animation: slideIn 1s ease-in-out;
 }
 
@@ -139,27 +111,61 @@ h1 {
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* --- Proyek Button --- */
-.project-container {
-    text-align: center;
-    margin-top: 40px; /* Tambah jarak ke atas */
+/* --- Text Animasi Masuk --- */
+.animated-text {
+    opacity: 0;
+    animation: fadeInText 1.5s ease-in forwards;
 }
 
-.project-button {
-    background-color: #008CBA; /* Warna biru terang */
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s ease-in-out;
-    margin: 10px;
-    display: inline-block;
+@keyframes fadeInText {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.project-button:hover {
-    background-color: #005f7f;
+/* --- Profil dengan Bingkai Bulat & Pusat --- */
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px; /* Jarak dari atas */
+}
+
+.profile-image {
+    width: 120px; /* Ukuran default */
+    height: 120px;
+    max-width: 100%;
+    border-radius: 50%;
+    border: 4px solid #f1c40f;
+    box-shadow: 0px 4px 10px rgba(255, 255, 0, 0.3);
+    animation: zoomIn 1s ease-in-out;
+}
+
+/* --- Responsif untuk HP --- */
+@media (max-width: 768px) {
+    .profile-image {
+        width: 100px;
+        height: 100px;
+        border: 3px solid #f1c40f;
+    }
+}
+
+/* --- List Styling --- */
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+ul li {
+    margin: 5px 0;
+}
+
+/* --- Grafik Styling --- */
+canvas {
+    margin-top: 20px;
+    background: #1c1c1c;
+    padding: 10px;
+    border-radius: 8px;
 }
 
 /* --- Panel Tutup di Klik --- */
@@ -175,4 +181,4 @@ h1 {
 
 .overlay.show {
     display: block;
-    }
+}
