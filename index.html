@@ -1,41 +1,2141 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Home</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+    <title>GameTop - Topup Game & Pulsa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --primary-dark: #5649c0;
+            --secondary: #00cec9;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --danger: #d63031;
+            --success: #00b894;
+            --warning: #fdcb6e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .auth-buttons .btn {
+            margin-left: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: none;
+            font-size: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 180px;
+            background-color: #f5f6fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product-category {
+            display: inline-block;
+            background-color: #f5f6fa;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 12px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .product-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .product-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert-success {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .alert-danger {
+            background-color: rgba(214, 48, 49, 0.1);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .transaction-modal .transaction-info {
+            margin-bottom: 20px;
+        }
+
+        .transaction-modal .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .transaction-modal .info-label {
+            color: #666;
+        }
+
+        .transaction-modal .info-value {
+            font-weight: 500;
+        }
+
+        .qr-code {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .qr-code img {
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        .deposit-steps {
+            margin: 20px 0;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex-grow: 1;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                margin: 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links li {
+                margin: 5px 15px;
+            }
+
+            .auth-buttons {
+                margin-top: 15px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .products {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            margin: 20px auto;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Dashboard styles */
+        .dashboard {
+            display: flex;
+            min-height: calc(100vh - 80px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: rgba(108, 92, 231, 0.1);
+            color: var(--primary);
+            border-left: 3px solid var(--primary);
+        }
+
+        .sidebar-menu i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 30px;
+            background-color: #f8f9fa;
+        }
+
+        .balance-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .balance-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .balance-amount {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .balance-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .stat-icon.primary {
+            background-color: rgba(108, 92, 231, 0.1);
+            color: var(--primary);
+        }
+
+        .stat-icon.success {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--success);
+        }
+
+        .stat-icon.warning {
+            background-color: rgba(253, 203, 110, 0.1);
+            color: var(--warning);
+        }
+
+        .stat-icon.danger {
+            background-color: rgba(214, 48, 49, 0.1);
+            color: var(--danger);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #666;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status.success {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--success);
+        }
+
+        .status.pending {
+            background-color: rgba(253, 203, 110, 0.1);
+            color: var(--warning);
+        }
+
+        .status.failed {
+            background-color: rgba(214, 48, 49, 0.1);
+            color: var(--danger);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .pagination a {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            background-color: white;
+            color: var(--dark);
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .pagination a.active, .pagination a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        @media (max-width: 992px) {
+            .dashboard {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                box-shadow: none;
+                border-bottom: 1px solid #eee;
+            }
+
+            .sidebar-menu {
+                display: flex;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+
+            .sidebar-menu li {
+                margin-bottom: 0;
+                margin-right: 10px;
+            }
+
+            .sidebar-menu a {
+                white-space: nowrap;
+                border-left: none !important;
+                border-bottom: 3px solid transparent;
+            }
+
+            .sidebar-menu a:hover, .sidebar-menu a.active {
+                border-bottom: 3px solid var(--primary);
+            }
+        }
+    </style>
 </head>
-<body class="fade-in">
-
-    <!-- Navbar -->
-    <nav class="navbar">
-        <a href="index.html">Home</a>
-        <a href="tentang.html">Tentang</a>
-        <a href="peringatan.html">Peringatan</a>
-        <a href="proyek.html">Proyek</a>
-        <div class="menu-toggle">☰</div>
-    </nav>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <a href="index.html">Home</a>
-        <a href="tentang.html">Tentang</a>
-        <a href="peringatan.html">Peringatan</a>
-        <a href="proyek.html">Proyek</a>
-    </div>
-
-    <!-- Konten Utama -->
-    <section id="home" class="section">
+<body>
+    <!-- Header -->
+    <header>
         <div class="container">
-            <div class="profile">
-                <img src="profile.jpg" class="profile-image" alt="Foto Profil">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-gamepad"></i>
+                    GameTop
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline" id="loginBtn">Login</a>
+                    <a href="#" class="btn btn-primary" id="registerBtn">Register</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Top Up Game & Pulsa Easily</h1>
+            <p>Fast, secure, and reliable top-up service for your favorite games and mobile credits</p>
+            <div class="search-box">
+                <input type="text" placeholder="Search for games, vouchers, or products...">
+                <button><i class="fas fa-search"></i></button>
             </div>
-            <h1 class="animated-text">Selamat Datang di Portfolio Saya</h1>
-            <p class="developer-name">Dibuat oleh <span class="highlight">ᗪᗩꋊZ</span></p>
         </div>
     </section>
 
+    <!-- Products Section -->
+    <section class="container" id="products">
+        <div class="section-title">
+            <h2>Our Products</h2>
+            <p>Choose from a wide range of game credits, vouchers, and mobile top-ups</p>
+        </div>
+
+        <div class="categories">
+            <button class="category-btn active" data-category="">All Categories</button>
+            <!-- Categories will be loaded dynamically -->
+        </div>
+
+        <div class="products">
+            <!-- Products will be loaded dynamically -->
+            <div class="spinner" id="productsSpinner"></div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="container" id="how-it-works">
+        <div class="section-title">
+            <h2>How It Works</h2>
+            <p>Get your game credits or mobile top-ups in just 3 simple steps</p>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Select Product</h3>
+                    <p>Choose the game or mobile credit you want to top up from our wide selection.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Enter Details</h3>
+                    <p>Provide your game ID or mobile number and confirm the transaction.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Complete Payment</h3>
+                    <p>Make payment and receive your top-up instantly after successful payment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Order Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Order Details</h2>
+            
+            <div class="alert alert-success" id="orderSuccessAlert"></div>
+            <div class="alert alert-danger" id="orderErrorAlert"></div>
+            
+            <div id="orderForm">
+                <div class="form-group">
+                    <label for="productName">Product</label>
+                    <input type="text" id="productName" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Price</label>
+                    <input type="text" id="productPrice" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="targetInput">Game ID / Phone Number</label>
+                    <input type="text" id="targetInput" placeholder="Enter your game ID or phone number">
+                    <small id="targetHelp" class="text-muted">For Mobile Legend, use format: ID|ZONE (e.g., 12345678|1234)</small>
+                </div>
+                <button class="submit-btn" id="submitOrderBtn">Place Order</button>
+            </div>
+            
+            <div id="orderResult" style="display: none;">
+                <div class="transaction-info">
+                    <div class="info-row">
+                        <span class="info-label">Transaction ID:</span>
+                        <span class="info-value" id="trxId"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Reference ID:</span>
+                        <span class="info-value" id="reffId"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Status:</span>
+                        <span class="info-value" id="trxStatus"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Date:</span>
+                        <span class="info-value" id="trxDate"></span>
+                    </div>
+                </div>
+                <button class="submit-btn" id="closeOrderBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deposit Modal -->
+    <div class="modal" id="depositModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Deposit Saldo</h2>
+            
+            <div class="alert alert-success" id="depositSuccessAlert"></div>
+            <div class="alert alert-danger" id="depositErrorAlert"></div>
+            
+            <div id="depositForm">
+                <div class="form-group">
+                    <label for="depositAmount">Amount (Min. Rp 500)</label>
+                    <input type="number" id="depositAmount" placeholder="Enter amount">
+                </div>
+                <button class="submit-btn" id="submitDepositBtn">Request Deposit</button>
+            </div>
+            
+            <div id="depositResult" style="display: none;">
+                <div class="transaction-info">
+                    <div class="info-row">
+                        <span class="info-label">Deposit ID:</span>
+                        <span class="info-value" id="depositId"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Reference ID:</span>
+                        <span class="info-value" id="depositReffId"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Amount:</span>
+                        <span class="info-value" id="depositAmountValue"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Fee:</span>
+                        <span class="info-value" id="depositFee"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Total Received:</span>
+                        <span class="info-value" id="depositTotal"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Status:</span>
+                        <span class="info-value" id="depositStatus"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Expires At:</span>
+                        <span class="info-value" id="depositExpiry"></span>
+                    </div>
+                </div>
+                
+                <div class="qr-code">
+                    <p>Scan QR Code to Pay</p>
+                    <img id="qrImage" src="" alt="QR Code">
+                </div>
+                
+                <div class="deposit-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Scan QR Code</h3>
+                            <p>Use your mobile banking app to scan the QR code above.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Complete Payment</h3>
+                            <p>Confirm the payment with the exact amount shown.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Wait for Confirmation</h3>
+                            <p>Your balance will be updated automatically after payment is verified.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="submit-btn" id="closeDepositBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Login to Your Account</h2>
+            
+            <div class="alert alert-danger" id="loginErrorAlert"></div>
+            
+            <div class="form-group">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password">
+            </div>
+            <button class="submit-btn" id="loginSubmitBtn">Login</button>
+            
+            <p style="text-align: center; margin-top: 15px;">
+                Don't have an account? <a href="#" id="showRegister">Register here</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Create New Account</h2>
+            
+            <div class="alert alert-danger" id="registerErrorAlert"></div>
+            
+            <div class="form-group">
+                <label for="registerName">Full Name</label>
+                <input type="text" id="registerName" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="registerEmail">Email</label>
+                <input type="email" id="registerEmail" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" placeholder="Create a password">
+            </div>
+            <div class="form-group">
+                <label for="registerConfirmPassword">Confirm Password</label>
+                <input type="password" id="registerConfirmPassword" placeholder="Confirm your password">
+            </div>
+            <button class="submit-btn" id="registerSubmitBtn">Register</button>
+            
+            <p style="text-align: center; margin-top: 15px;">
+                Already have an account? <a href="#" id="showLogin">Login here</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Dashboard (hidden by default) -->
+    <div class="dashboard" id="dashboard" style="display: none;">
+        <div class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active" data-section="dashboard-home"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#" data-section="transactions"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+                <li><a href="#" data-section="deposits"><i class="fas fa-wallet"></i> Deposit History</a></li>
+                <li><a href="#" data-section="profile"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+        
+        <div class="main-content">
+            <!-- Dashboard Home -->
+            <div id="dashboard-home">
+                <div class="balance-card">
+                    <h3 class="balance-title">Your Balance</h3>
+                    <div class="balance-amount" id="userBalance">Rp 0</div>
+                    <div class="balance-actions">
+                        <button class="btn btn-primary" id="depositBtnDashboard">Deposit</button>
+                        <button class="btn btn-outline">Withdraw</button>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-icon primary">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-title">Total Transactions</div>
+                        <div class="stat-value" id="totalTransactions">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon success">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-title">Successful</div>
+                        <div class="stat-value" id="successTransactions">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-title">Pending</div>
+                        <div class="stat-value" id="pendingTransactions">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon danger">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-title">Failed</div>
+                        <div class="stat-value" id="failedTransactions">0</div>
+                    </div>
+                </div>
+                
+                <div class="section-header">
+                    <h3 class="section-title">Recent Transactions</h3>
+                    <a href="#" class="btn btn-outline" data-section="transactions">View All</a>
+                </div>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Product</th>
+                                <th>Target</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentTransactions">
+                            <!-- Recent transactions will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Transactions Section -->
+            <div id="transactions" style="display: none;">
+                <div class="section-header">
+                    <h3 class="section-title">Transaction History</h3>
+                    <div>
+                        <select id="transactionFilter" style="padding: 8px; border-radius: 5px; border: 1px solid #ddd;">
+                            <option value="all">All Transactions</option>
+                            <option value="success">Success</option>
+                            <option value="pending">Pending</option>
+                            <option value="failed">Failed</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Product</th>
+                                <th>Target</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allTransactions">
+                            <!-- All transactions will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="pagination" id="transactionsPagination">
+                    <!-- Pagination will be generated here -->
+                </div>
+            </div>
+            
+            <!-- Deposits Section -->
+            <div id="deposits" style="display: none;">
+                <div class="section-header">
+                    <h3 class="section-title">Deposit History</h3>
+                    <button class="btn btn-primary" id="depositBtnDeposits">New Deposit</button>
+                </div>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Amount</th>
+                                <th>Fee</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="depositHistory">
+                            <!-- Deposit history will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="pagination" id="depositsPagination">
+                    <!-- Pagination will be generated here -->
+                </div>
+            </div>
+            
+            <!-- Profile Section -->
+            <div id="profile" style="display: none;">
+                <div class="section-header">
+                    <h3 class="section-title">Profile Settings</h3>
+                </div>
+                
+                <div class="alert alert-success" id="profileSuccessAlert" style="display: none;"></div>
+                <div class="alert alert-danger" id="profileErrorAlert" style="display: none;"></div>
+                
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label for="profileName">Full Name</label>
+                        <input type="text" id="profileName" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileEmail">Email</label>
+                        <input type="email" id="profileEmail" placeholder="Enter your email" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="profilePhone">Phone Number</label>
+                        <input type="text" id="profilePhone" placeholder="Enter your phone number">
+                    </div>
+                    <button type="submit" class="submit-btn">Update Profile</button>
+                </form>
+                
+                <div style="margin-top: 40px;">
+                    <h4 style="margin-bottom: 20px;">Change Password</h4>
+                    
+                    <div class="alert alert-success" id="passwordSuccessAlert" style="display: none;"></div>
+                    <div class="alert alert-danger" id="passwordErrorAlert" style="display: none;"></div>
+                    
+                    <form id="passwordForm">
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password</label>
+                            <input type="password" id="currentPassword" placeholder="Enter current password">
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" id="newPassword" placeholder="Enter new password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmNewPassword">Confirm New Password</label>
+                            <input type="password" id="confirmNewPassword" placeholder="Confirm new password">
+                        </div>
+                        <button type="submit" class="submit-btn">Change Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="container" id="contact">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+            <p>Have questions or need support? We're here to help!</p>
+        </div>
+
+        <div class="contact-info">
+            <div class="contact-method">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>support@gametop.com</p>
+            </div>
+            <div class="contact-method">
+                <i class="fas fa-phone"></i>
+                <h3>Phone</h3>
+                <p>+62 123 4567 8910</p>
+            </div>
+            <div class="contact-method">
+                <i class="fas fa-comments"></i>
+                <h3>Live Chat</h3>
+                <p>Available 24/7</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>GameTop</h3>
+                    <p>Your trusted partner for game top-ups and mobile credits. Fast, secure, and reliable service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#">Game Credits</a></li>
+                        <li><a href="#">Mobile Topups</a></li>
+                        <li><a href="#">Vouchers</a></li>
+                        <li><a href="#">Data Packages</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 GameTop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // API Configuration
+        const API_BASE_URL = 'https://www.v-pedia.web.id';
+        const API_KEY = 'V-Pedia-jv7pcuzlscb7ymhx';
+        
+        // DOM Elements
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const orderModal = document.getElementById('orderModal');
+        const depositModal = document.getElementById('depositModal');
+        const closeModalBtns = document.querySelectorAll('.close-modal');
+        const showRegister = document.getElementById('showRegister');
+        const showLogin = document.getElementById('showLogin');
+        const loginSubmitBtn = document.getElementById('loginSubmitBtn');
+        const registerSubmitBtn = document.getElementById('registerSubmitBtn');
+        const submitOrderBtn = document.getElementById('submitOrderBtn');
+        const submitDepositBtn = document.getElementById('submitDepositBtn');
+        const closeOrderBtn = document.getElementById('closeOrderBtn');
+        const closeDepositBtn = document.getElementById('closeDepositBtn');
+        const depositBtnDashboard = document.getElementById('depositBtnDashboard');
+        const depositBtnDeposits = document.getElementById('depositBtnDeposits');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const dashboard = document.getElementById('dashboard');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const productsContainer = document.querySelector('.products');
+        const productsSpinner = document.getElementById('productsSpinner');
+        
+        // State variables
+        let currentUser = null;
+        let selectedProduct = null;
+        let categories = [];
+        let products = [];
+        let filteredProducts = [];
+        let transactions = [];
+        let deposits = [];
+        
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in (from localStorage)
+            const storedUser = localStorage.getItem('currentUser');
+            if (storedUser) {
+                currentUser = JSON.parse(storedUser);
+                showDashboard();
+                loadDashboardData();
+            }
+            
+            // Load categories and products
+            loadCategories();
+            loadProducts();
+            
+            // Set up event listeners
+            setupEventListeners();
+        });
+        
+        // Set up event listeners
+        function setupEventListeners() {
+            // Modal triggers
+            loginBtn.addEventListener('click', () => showModal(loginModal));
+            registerBtn.addEventListener('click', () => showModal(registerModal));
+            showRegister.addEventListener('click', (e) => {
+                e.preventDefault();
+                hideModal(loginModal);
+                showModal(registerModal);
+            });
+            showLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                hideModal(registerModal);
+                showModal(loginModal);
+            });
+            
+            // Close modals
+            closeModalBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const modal = this.closest('.modal');
+                    hideModal(modal);
+                });
+            });
+            
+            // Close modals when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target.classList.contains('modal')) {
+                    hideModal(e.target);
+                }
+            });
+            
+            // Login form submission
+            loginSubmitBtn.addEventListener('click', handleLogin);
+            
+            // Register form submission
+            registerSubmitBtn.addEventListener('click', handleRegister);
+            
+            // Order form submission
+            submitOrderBtn.addEventListener('click', handleOrder);
+            closeOrderBtn.addEventListener('click', () => hideModal(orderModal));
+            
+            // Deposit form submission
+            submitDepositBtn.addEventListener('click', handleDeposit);
+            closeDepositBtn.addEventListener('click', () => hideModal(depositModal));
+            depositBtnDashboard.addEventListener('click', () => showModal(depositModal));
+            depositBtnDeposits.addEventListener('click', () => showModal(depositModal));
+            
+            // Logout
+            logoutBtn.addEventListener('click', handleLogout);
+            
+            // Dashboard navigation
+            document.querySelectorAll('.sidebar-menu a').forEach(link => {
+                if (link.dataset.section) {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        showDashboardSection(link.dataset.section);
+                    });
+                }
+            });
+            
+            // Category filter buttons
+            categoryButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryButtons.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Filter products
+                    const category = this.dataset.category || '';
+                    filterProducts(category);
+                });
+            });
+            
+            // Transaction filter
+            document.getElementById('transactionFilter').addEventListener('change', function() {
+                filterTransactions(this.value);
+            });
+        }
+        
+        // Show modal
+        function showModal(modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Hide modal
+        function hideModal(modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            // Reset forms and alerts
+            if (modal === orderModal) {
+                document.getElementById('orderForm').style.display = 'block';
+                document.getElementById('orderResult').style.display = 'none';
+                document.getElementById('orderSuccessAlert').style.display = 'none';
+                document.getElementById('orderErrorAlert').style.display = 'none';
+            } else if (modal === depositModal) {
+                document.getElementById('depositForm').style.display = 'block';
+                document.getElementById('depositResult').style.display = 'none';
+                document.getElementById('depositSuccessAlert').style.display = 'none';
+                document.getElementById('depositErrorAlert').style.display = 'none';
+                document.getElementById('depositAmount').value = '';
+            } else if (modal === loginModal) {
+                document.getElementById('loginEmail').value = '';
+                document.getElementById('loginPassword').value = '';
+                document.getElementById('loginErrorAlert').style.display = 'none';
+            } else if (modal === registerModal) {
+                document.getElementById('registerName').value = '';
+                document.getElementById('registerEmail').value = '';
+                document.getElementById('registerPassword').value = '';
+                document.getElementById('registerConfirmPassword').value = '';
+                document.getElementById('registerErrorAlert').style.display = 'none';
+            }
+        }
+        
+        // Show dashboard
+        function showDashboard() {
+            document.querySelector('header').style.display = 'none';
+            document.querySelector('.hero').style.display = 'none';
+            document.querySelector('#products').style.display = 'none';
+            document.querySelector('#how-it-works').style.display = 'none';
+            document.querySelector('#contact').style.display = 'none';
+            document.querySelector('footer').style.display = 'none';
+            dashboard.style.display = 'flex';
+            
+            // Show dashboard home by default
+            showDashboardSection('dashboard-home');
+        }
+        
+        // Show dashboard section
+        function showDashboardSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.main-content > div').forEach(div => {
+                div.style.display = 'none';
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Update active menu item
+            document.querySelectorAll('.sidebar-menu a').forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.section === sectionId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Load categories from API
+        async function loadCategories() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/h2h/categor?apikey=${API_KEY}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    categories = data.data;
+                    renderCategories();
+                } else {
+                    console.error('Failed to load categories:', data.message);
+                }
+            } catch (error) {
+                console.error('Error loading categories:', error);
+            }
+        }
+        
+        // Render categories
+        function renderCategories() {
+            const categoriesContainer = document.querySelector('.categories');
+            
+            // Clear existing buttons except "All Categories"
+            const allCategoriesBtn = categoriesContainer.querySelector('.category-btn');
+            categoriesContainer.innerHTML = '';
+            categoriesContainer.appendChild(allCategoriesBtn);
+            
+            // Add category buttons
+            categories.forEach(category => {
+                const button = document.createElement('button');
+                button.className = 'category-btn';
+                button.textContent = category;
+                button.dataset.category = category;
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.category-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Filter products
+                    filterProducts(category);
+                });
+                
+                categoriesContainer.appendChild(button);
+            });
+        }
+        
+        // Load products from API
+        async function loadProducts() {
+            productsSpinner.style.display = 'block';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/h2h/price-list?apikey=${API_KEY}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    products = data.data;
+                    filteredProducts = [...products];
+                    renderProducts();
+                } else {
+                    console.error('Failed to load products:', data.message);
+                }
+            } catch (error) {
+                console.error('Error loading products:', error);
+            } finally {
+                productsSpinner.style.display = 'none';
+            }
+        }
+        
+        // Filter products by category
+        function filterProducts(category = '') {
+            if (category === '') {
+                filteredProducts = [...products];
+            } else {
+                filteredProducts = products.filter(product => product.category === category);
+            }
+            
+            renderProducts();
+        }
+        
+        // Render products
+        function renderProducts() {
+            productsContainer.innerHTML = '';
+            
+            if (filteredProducts.length === 0) {
+                productsContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">No products found in this category.</p>';
+                return;
+            }
+            
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.img_url || 'https://via.placeholder.com/150'}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <span class="product-category">${product.category}</span>
+                        <div class="product-price">${product.price_formatted}</div>
+                        <button class="product-btn" data-code="${product.code}">Order Now</button>
+                    </div>
+                `;
+                
+                productsContainer.appendChild(productCard);
+            });
+            
+            // Add event listeners to order buttons
+            document.querySelectorAll('.product-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productCode = this.dataset.code;
+                    selectedProduct = filteredProducts.find(p => p.code === productCode);
+                    showProductOrderModal(selectedProduct);
+                });
+            });
+        }
+        
+        // Show product order modal
+        function showProductOrderModal(product) {
+            document.getElementById('productName').value = product.name;
+            document.getElementById('productPrice').value = product.price_formatted;
+            document.getElementById('targetInput').value = '';
+            showModal(orderModal);
+        }
+        
+        // Handle login
+        async function handleLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const errorAlert = document.getElementById('loginErrorAlert');
+            
+            if (!email || !password) {
+                errorAlert.textContent = 'Please fill in all fields';
+                errorAlert.style.display = 'block';
+                return;
+            }
+            
+            // In a real app, you would call your authentication API here
+            // This is a mock implementation for demonstration
+            
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Mock response
+            const mockResponse = {
+                success: true,
+                user: {
+                    id: 'user123',
+                    name: 'John Doe',
+                    email: email,
+                    phone: '081234567890',
+                    balance: 1000000,
+                    transactions: 15,
+                    successfulTransactions: 12,
+                    pendingTransactions: 2,
+                    failedTransactions: 1
+                }
+            };
+            
+            if (mockResponse.success) {
+                currentUser = mockResponse.user;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                hideModal(loginModal);
+                showDashboard();
+                loadDashboardData();
+            } else {
+                errorAlert.textContent = 'Invalid email or password';
+                errorAlert.style.display = 'block';
+            }
+        }
+        
+        // Handle register
+        async function handleRegister() {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            const errorAlert = document.getElementById('registerErrorAlert');
+            
+            if (!name || !email || !password || !confirmPassword) {
+                errorAlert.textContent = 'Please fill in all fields';
+                errorAlert.style.display = 'block';
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                errorAlert.textContent = 'Passwords do not match';
+                errorAlert.style.display = 'block';
+                return;
+            }
+            
+            // In a real app, you would call your registration API here
+            // This is a mock implementation for demonstration
+            
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Mock response
+            const mockResponse = {
+                success: true,
+                message: 'Registration successful'
+            };
+            
+            if (mockResponse.success) {
+                alert('Registration successful! Please login with your credentials.');
+                hideModal(registerModal);
+                showModal(loginModal);
+            } else {
+                errorAlert.textContent = mockResponse.message || 'Registration failed';
+                errorAlert.style.display = 'block';
+            }
+        }
+        
+        // Handle order
+        async function handleOrder() {
+            const target = document.getElementById('targetInput').value;
+            const successAlert = document.getElementById('orderSuccessAlert');
+            const errorAlert = document.getElementById('orderErrorAlert');
+            
+            if (!target) {
+                errorAlert.textContent = 'Please enter your game ID or phone number';
+                errorAlert.style.display = 'block';
+                return;
+            }
+            
+            // Show loading state
+            submitOrderBtn.disabled = true;
+            submitOrderBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            
+            try {
+                // In a real app, you would call the order API here
+                // This is a mock implementation for demonstration
+                
+                // Simulate API call delay
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Mock response
+                const mockResponse = {
+                    success: true,
+                    message: "Transaksi berhasil dibuat",
+                    data: {
+                        id: "TRX" + Math.floor(Math.random() * 1000000000),
+                        reff_id: "TRX-" + Math.floor(Math.random() * 1000000000),
+                        layanan: selectedProduct.name,
+                        code: selectedProduct.code,
+                        target: target,
+                        price: selectedProduct.final_price,
+                        sn: null,
+                        status: "pending",
+                        created_at: new Date().toISOString()
+                    }
+                };
+                
+                if (mockResponse.success) {
+                    // Show order result
+                    document.getElementById('orderForm').style.display = 'none';
+                    document.getElementById('orderResult').style.display = 'block';
+                    
+                    document.getElementById('trxId').textContent = mockResponse.data.id;
+                    document.getElementById('reffId').textContent = mockResponse.data.reff_id;
+                    document.getElementById('trxStatus').textContent = mockResponse.data.status;
+                    document.getElementById('trxDate').textContent = formatDate(mockResponse.data.created_at);
+                    
+                    // Add to transactions list
+                    transactions.unshift({
+                        id: mockResponse.data.id,
+                        product: mockResponse.data.layanan,
+                        target: mockResponse.data.target,
+                        amount: mockResponse.data.price,
+                        status: mockResponse.data.status,
+                        date: mockResponse.data.created_at
+                    });
+                    
+                    // Update dashboard if visible
+                    if (dashboard.style.display === 'flex') {
+                        loadDashboardData();
+                    }
+                } else {
+                    errorAlert.textContent = mockResponse.message || 'Order failed';
+                    errorAlert.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error placing order:', error);
+                errorAlert.textContent = 'An error occurred while placing your order';
+                errorAlert.style.display = 'block';
+            } finally {
+                submitOrderBtn.disabled = false;
+                submitOrderBtn.textContent = 'Place Order';
+            }
+        }
+        
+        // Handle deposit
+        async function handleDeposit() {
+            const amount = parseInt(document.getElementById('depositAmount').value);
+            const successAlert = document.getElementById('depositSuccessAlert');
+            const errorAlert = document.getElementById('depositErrorAlert');
+            
+            if (!amount || amount < 500) {
+                errorAlert.textContent = 'Minimum deposit amount is Rp 500';
+                errorAlert.style.display = 'block';
+                return;
+            }
+            
+            // Show loading state
+            submitDepositBtn.disabled = true;
+            submitDepositBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            
+            try {
+                // In a real app, you would call the deposit API here
+                // This is a mock implementation for demonstration
+                
+                // Simulate API call delay
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Calculate fee (7%)
+                const fee = Math.floor(amount * 0.07);
+                const totalReceived = amount - fee;
+                
+                // Mock response
+                const mockResponse = {
+                    success: true,
+                    message: "Permintaan deposit dibuat",
+                    data: {
+                        id: "DEP" + Math.floor(Math.random() * 1000000000),
+                        reff_id: "DEP-" + Math.floor(Math.random() * 1000000000),
+                        nominal: amount,
+                        tambahan: 0,
+                        fee: fee,
+                        get_balance: totalReceived,
+                        qr_string: "0000000000000000000000000000",
+                        qr_image: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=deposit-" + Math.floor(Math.random() * 1000000000),
+                        status: "pending",
+                        created_at: new Date().toISOString(),
+                        expired_at: new Date(Date.now() + 60 * 60 * 1000).toISOString()
+                    }
+                };
+                
+                if (mockResponse.success) {
+                    // Show deposit result
+                    document.getElementById('depositForm').style.display = 'none';
+                    document.getElementById('depositResult').style.display = 'block';
+                    
+                    document.getElementById('depositId').textContent = mockResponse.data.id;
+                    document.getElementById('depositReffId').textContent = mockResponse.data.reff_id;
+                    document.getElementById('depositAmountValue').textContent = `Rp ${formatNumber(mockResponse.data.nominal)}`;
+                    document.getElementById('depositFee').textContent = `Rp ${formatNumber(mockResponse.data.fee)}`;
+                    document.getElementById('depositTotal').textContent = `Rp ${formatNumber(mockResponse.data.get_balance)}`;
+                    document.getElementById('depositStatus').textContent = mockResponse.data.status;
+                    document.getElementById('depositExpiry').textContent = formatDate(mockResponse.data.expired_at);
+                    document.getElementById('qrImage').src = mockResponse.data.qr_image;
+                    
+                    // Add to deposits list
+                    deposits.unshift({
+                        id: mockResponse.data.id,
+                        amount: mockResponse.data.nominal,
+                        fee: mockResponse.data.fee,
+                        total: mockResponse.data.get_balance,
+                        status: mockResponse.data.status,
+                        date: mockResponse.data.created_at,
+                        expiry: mockResponse.data.expired_at
+                    });
+                    
+                    // Update dashboard if visible
+                    if (dashboard.style.display === 'flex') {
+                        loadDashboardData();
+                    }
+                } else {
+                    errorAlert.textContent = mockResponse.message || 'Deposit failed';
+                    errorAlert.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error creating deposit:', error);
+                errorAlert.textContent = 'An error occurred while creating your deposit';
+                errorAlert.style.display = 'block';
+            } finally {
+                submitDepositBtn.disabled = false;
+                submitDepositBtn.textContent = 'Request Deposit';
+            }
+        }
+        
+        // Handle logout
+        function handleLogout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            
+            // Show main content
+            document.querySelector('header').style.display = 'block';
+            document.querySelector('.hero').style.display = 'block';
+            document.querySelector('#products').style.display = 'block';
+            document.querySelector('#how-it-works').style.display = 'block';
+            document.querySelector('#contact').style.display = 'block';
+            document.querySelector('footer').style.display = 'block';
+            dashboard.style.display = 'none';
+        }
+        
+        // Load dashboard data
+        function loadDashboardData() {
+            if (!currentUser) return;
+            
+            // Update user info
+            document.getElementById('userBalance').textContent = `Rp ${formatNumber(currentUser.balance)}`;
+            document.getElementById('totalTransactions').textContent = currentUser.transactions;
+            document.getElementById('successTransactions').textContent = currentUser.successfulTransactions;
+            document.getElementById('pendingTransactions').textContent = currentUser.pendingTransactions;
+            document.getElementById('failedTransactions').textContent = currentUser.failedTransactions;
+            
+            // Update profile form
+            document.getElementById('profileName').value = currentUser.name;
+            document.getElementById('profileEmail').value = currentUser.email;
+            document.getElementById('profilePhone').value = currentUser.phone;
+            
+            // Load recent transactions
+            renderRecentTransactions();
+            
+            // Load all transactions
+            renderAllTransactions();
+            
+            // Load deposit history
+            renderDepositHistory();
+        }
+        
+        // Render recent transactions
+        function renderRecentTransactions() {
+            const container = document.getElementById('recentTransactions');
+            container.innerHTML = '';
+            
+            const recent = transactions.slice(0, 5);
+            
+            if (recent.length === 0) {
+                container.innerHTML = '<tr><td colspan="6" style="text-align: center;">No recent transactions</td></tr>';
+                return;
+            }
+            
+            recent.forEach(trx => {
+                const row = document.createElement('tr');
+                
+                let statusClass = '';
+                if (trx.status === 'success') statusClass = 'success';
+                else if (trx.status === 'pending') statusClass = 'pending';
+                else if (trx.status === 'failed') statusClass = 'failed';
+                
+                row.innerHTML = `
+                    <td>${trx.id}</td>
+                    <td>${trx.product}</td>
+                    <td>${trx.target}</td>
+                    <td>Rp ${formatNumber(trx.amount)}</td>
+                    <td><span class="status ${statusClass}">${trx.status}</span></td>
+                    <td>${formatDate(trx.date)}</td>
+                `;
+                
+                container.appendChild(row);
+            });
+        }
+        
+        // Render all transactions
+        function renderAllTransactions(filter = 'all') {
+            const container = document.getElementById('allTransactions');
+            container.innerHTML = '';
+            
+            let filtered = transactions;
+            if (filter === 'success') filtered = transactions.filter(t => t.status === 'success');
+            else if (filter === 'pending') filtered = transactions.filter(t => t.status === 'pending');
+            else if (filter === 'failed') filtered = transactions.filter(t => t.status === 'failed');
+            
+            if (filtered.length === 0) {
+                container.innerHTML = '<tr><td colspan="6" style="text-align: center;">No transactions found</td></tr>';
+                return;
+            }
+            
+            filtered.forEach(trx => {
+                const row = document.createElement('tr');
+                
+                let statusClass = '';
+                if (trx.status === 'success') statusClass = 'success';
+                else if (trx.status === 'pending') statusClass = 'pending';
+                else if (trx.status === 'failed') statusClass = 'failed';
+                
+                row.innerHTML = `
+                    <td>${trx.id}</td>
+                    <td>${trx.product}</td>
+                    <td>${trx.target}</td>
+                    <td>Rp ${formatNumber(trx.amount)}</td>
+                    <td><span class="status ${statusClass}">${trx.status}</span></td>
+                    <td>${formatDate(trx.date)}</td>
+                `;
+                
+                container.appendChild(row);
+            });
+        }
+        
+        // Filter transactions
+        function filterTransactions(filter) {
+            renderAllTransactions(filter);
+        }
+        
+        // Render deposit history
+        function renderDepositHistory() {
+            const container = document.getElementById('depositHistory');
+            container.innerHTML = '';
+            
+            if (deposits.length === 0) {
+                container.innerHTML = '<tr><td colspan="7" style="text-align: center;">No deposit history</td></tr>';
+                return;
+            }
+            
+            deposits.forEach(deposit => {
+                const row = document.createElement('tr');
+                
+                let statusClass = '';
+                if (deposit.status === 'success') statusClass = 'success';
+                else if (deposit.status === 'pending') statusClass = 'pending';
+                else if (deposit.status === 'failed') statusClass = 'failed';
+                else if (deposit.status === 'cancel') statusClass = 'failed';
+                
+                row.innerHTML = `
+                    <td>${deposit.id}</td>
+                    <td>Rp ${formatNumber(deposit.amount)}</td>
+                    <td>Rp ${formatNumber(deposit.fee)}</td>
+                    <td>Rp ${formatNumber(deposit.total)}</td>
+                    <td><span class="status ${statusClass}">${deposit.status}</span></td>
+                    <td>${formatDate(deposit.date)}</td>
+                    <td>
+                        ${deposit.status === 'pending' ? 
+                          `<button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;" data-id="${deposit.id}">Cancel</button>` : 
+                          ''}
+                    </td>
+                `;
+                
+                container.appendChild(row);
+            });
+            
+            // Add event listeners to cancel buttons
+            document.querySelectorAll('#depositHistory .btn-outline').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const depositId = this.dataset.id;
+                    cancelDeposit(depositId);
+                });
+            });
+        }
+        
+        // Cancel deposit
+        async function cancelDeposit(depositId) {
+            // In a real app, you would call the cancel deposit API here
+            // This is a mock implementation for demonstration
+            
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Find deposit in array
+            const depositIndex = deposits.findIndex(d => d.id === depositId);
+            if (depositIndex !== -1) {
+                deposits[depositIndex].status = 'cancel';
+                renderDepositHistory();
+                
+                alert('Deposit has been canceled successfully');
+            }
+        }
+        
+        // Format number with thousands separator
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+        
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('id-ID', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+    </script>
 </body>
 </html>
