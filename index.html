@@ -1,247 +1,1251 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameTop - Premium Game Topup</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Game Top-up Center - Top Up Game Favorit Anda</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7fc;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #4a6cf7;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #3a5ce5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 108, 247, 0.3);
+        }
+
+        .btn-primary {
+            background: #4a6cf7;
+        }
+
+        .btn-danger {
+            background: #f74a4a;
+        }
+
+        .btn-danger:hover {
+            background: #e53a3a;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 36px;
+            color: #333;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #4a6cf7, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 15px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 12px;
+            color: #fff;
+            font-size: 32px;
+        }
+
+        nav ul {
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            padding: 12px 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="1" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h2 {
+            font-size: 52px;
+            margin-bottom: 24px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+        }
+
+        .hero .btn {
+            font-size: 18px;
+            padding: 16px 32px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 100px 0;
+            background-color: #f9fafc;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-group select:focus {
+            outline: none;
+            border-color: #4a6cf7;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-details {
+            padding: 24px;
+        }
+
+        .product-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .product-category, .product-provider {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-category i, .product-provider i {
+            margin-right: 8px;
+            color: #4a6cf7;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin: 16px 0;
+        }
+
+        .product-status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .status-available {
+            background-color: #e6f7e6;
+            color: #28a745;
+        }
+
+        .status-unavailable {
+            background-color: #f7e6e6;
+            color: #dc3545;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #4a6cf7;
+        }
+
+        .form-group small {
+            display: block;
+            color: #666;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        /* Check Order Section */
+        .check-order {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+
+        .check-order form, .deposit form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f9fafc;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Deposit Section */
+        .deposit {
+            padding: 100px 0;
+            background-color: #f9fafc;
+        }
+
+        .deposit-actions {
+            max-width: 600px;
+            margin: 40px auto 0;
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .qr-container {
+            margin: 30px 0;
+        }
+
+        .qr-container img {
+            max-width: 250px;
+            border: 2px solid #e1e5e9;
+            padding: 15px;
+            background: #fff;
+            border-radius: 12px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* History Section */
+        .history {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+
+        .history-list {
+            margin-top: 40px;
+        }
+
+        .history-item {
+            background: #f9fafc;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-left: 4px solid #4a6cf7;
+        }
+
+        .history-details {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .history-activity {
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .history-date, .history-code {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .history-amount {
+            font-size: 20px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin: 0 20px;
+        }
+
+        .history-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .status-success {
+            background-color: #e6f7e6;
+            color: #28a745;
+        }
+
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-failed {
+            background-color: #f7e6e6;
+            color: #dc3545;
+        }
+
+        /* Result Box */
+        .result-box {
+            margin-top: 24px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+            border-left: 4px solid;
+        }
+
+        .result-success {
+            background-color: #e6f7e6;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .result-error {
+            background-color: #f7e6e6;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .result-info {
+            background-color: #e6f0f7;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-style: italic;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4a6cf7;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .no-products, .no-history, .error {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 18px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h2 {
+                font-size: 36px;
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            header .container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            nav ul li {
+                margin: 0;
+            }
+            
+            .filters {
+                flex-direction: column;
+            }
+            
+            .product-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .history-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .modal-content {
+                margin: 10% auto;
+                padding: 30px 20px;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mt-20 { margin-top: 20px; }
+        .mb-20 { margin-bottom: 20px; }
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
-    <div class="loader">
-        <div class="spinner"></div>
-    </div>
-    
     <header>
         <div class="container">
             <div class="logo">
-                <h1>Game<span>Top</span></h1>
-                <p>Premium Game Topup Service</p>
+                <h1><i class="fas fa-gamepad"></i> Game Top-up Center</h1>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#" class="active" data-section="home">Home</a></li>
-                    <li><a href="#" data-section="games">Games</a></li>
-                    <li><a href="#" data-section="transactions">Transactions</a></li>
-                    <li><a href="#" data-section="deposit">Deposit</a></li>
+                    <li><a href="#home" class="active">Beranda</a></li>
+                    <li><a href="#products">Produk</a></li>
+                    <li><a href="#check-order">Cek Pesanan</a></li>
+                    <li><a href="#deposit">Deposit</a></li>
+                    <li><a href="#history">Riwayat</a></li>
                 </ul>
             </nav>
-            <div class="user-actions">
-                <button id="login-btn">Login</button>
-                <button id="register-btn">Register</button>
-            </div>
         </div>
     </header>
 
-    <main class="container">
-        <!-- Home Section -->
-        <section id="home-section" class="active-section">
-            <div class="hero">
-                <div class="hero-content">
-                    <h2>Top Up Your Favorite Games</h2>
-                    <p>Fast, secure, and reliable game topup service with instant delivery</p>
-                    <button id="explore-btn">Explore Games</button>
-                </div>
-                <div class="hero-image">
-                    <img src="https://via.placeholder.com/500x300?text=Game+Characters" alt="Game Characters">
-                </div>
-            </div>
-
-            <div class="features">
-                <div class="feature-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Instant Delivery</h3>
-                    <p>Get your items instantly after payment</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>100% Secure</h3>
-                    <p>Safe and secure payment methods</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-headset"></i>
-                    <h3>24/7 Support</h3>
-                    <p>Our team is always ready to help</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Games Section -->
-        <section id="games-section">
-            <h2 class="section-title">Popular Games</h2>
-            <div class="filter-controls">
-                <select id="game-filter">
-                    <option value="all">All Games</option>
-                    <option value="Mobile Legends">Mobile Legends</option>
-                    <option value="Free Fire">Free Fire</option>
-                    <option value="PUBG Mobile">PUBG Mobile</option>
-                    <option value="Valorant">Valorant</option>
-                    <option value="Genshin Impact">Genshin Impact</option>
-                </select>
-                <input type="text" id="game-search" placeholder="Search games...">
-            </div>
-            
-            <div class="game-providers">
-                <h3>Select Provider</h3>
-                <div class="providers-list" id="providers-list">
-                    <!-- Providers will be loaded here -->
-                </div>
-            </div>
-            
-            <div class="game-grid" id="game-grid">
-                <!-- Games will be loaded here -->
-            </div>
-        </section>
-
-        <!-- Order Form (Modal) -->
-        <div class="modal" id="order-modal">
-            <div class="modal-content">
-                <span class="close-modal">&times;</span>
-                <h2 id="modal-title">Top Up <span id="game-name"></span></h2>
-                <form id="order-form">
-                    <div class="form-group">
-                        <label for="player-id">Player ID</label>
-                        <input type="text" id="player-id" required>
-                        <small>For Mobile Legends, separate ID and Zone with | (e.g., 12345678|1234)</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="payment-method">Payment Method</label>
-                        <select id="payment-method" required>
-                            <option value="">Select payment method</option>
-                            <option value="DANA">DANA</option>
-                            <option value="OVO">OVO</option>
-                            <option value="GOPAY">GoPay</option>
-                            <option value="Bank Transfer">Bank Transfer</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-submit">Confirm Order</button>
-                </form>
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Top Up Game Favorit Anda</h2>
+                <p>Layanan top up game yang cepat, aman, dan terpercaya untuk semua game favorit Anda</p>
+                <a href="#products" class="btn">Mulai Top Up</a>
             </div>
         </div>
+    </section>
 
-        <!-- Transactions Section -->
-        <section id="transactions-section">
-            <h2 class="section-title">Transaction History</h2>
-            <div class="transaction-controls">
-                <button id="refresh-transactions">Refresh</button>
-                <input type="text" id="transaction-search" placeholder="Search transactions...">
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title">Produk Game</h2>
+            
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="category-filter"><i class="fas fa-tags"></i> Kategori:</label>
+                    <select id="category-filter">
+                        <option value="">Semua Kategori</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="provider-filter"><i class="fas fa-building"></i> Provider:</label>
+                    <select id="provider-filter">
+                        <option value="">Semua Provider</option>
+                    </select>
+                </div>
+                <button id="apply-filter" class="btn">Terapkan Filter</button>
             </div>
-            <div class="transaction-table-container">
-                <table class="transaction-table">
-                    <thead>
-                        <tr>
-                            <th>Transaction ID</th>
-                            <th>Game/Product</th>
-                            <th>Target</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody id="transaction-body">
-                        <!-- Transactions will be loaded here -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
 
-        <!-- Deposit Section -->
-        <section id="deposit-section">
-            <h2 class="section-title">Deposit Balance</h2>
-            <div class="deposit-container">
-                <div class="deposit-form">
-                    <h3>Add Balance</h3>
-                    <form id="deposit-form">
-                        <div class="form-group">
-                            <label for="deposit-amount">Amount (Min. 500)</label>
-                            <input type="number" id="deposit-amount" min="500" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="deposit-method">Payment Method</label>
-                            <select id="deposit-method" required>
-                                <option value="">Select payment method</option>
-                                <option value="DANA">DANA</option>
-                                <option value="OVO">OVO</option>
-                                <option value="GOPAY">GoPay</option>
-                                <option value="Bank Transfer">Bank Transfer</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn-submit">Create Deposit</button>
-                    </form>
-                </div>
-                <div class="deposit-history">
-                    <h3>Deposit History</h3>
-                    <div class="history-table-container">
-                        <table class="history-table">
-                            <thead>
-                                <tr>
-                                    <th>Transaction ID</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                    <th>Date</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="deposit-body">
-                                <!-- Deposit history will be loaded here -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Status Modal -->
-        <div class="modal" id="status-modal">
-            <div class="modal-content">
-                <span class="close-modal">&times;</span>
-                <h2 id="status-title">Transaction Status</h2>
-                <div class="status-content" id="status-content">
-                    <!-- Status info will be loaded here -->
-                </div>
-                <button id="close-status" class="btn-submit">Close</button>
+            <div class="product-list" id="product-list">
+                <div class="loading">Memuat produk...</div>
             </div>
         </div>
-    </main>
+    </section>
+
+    <!-- Modal Pemesanan -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2><i class="fas fa-shopping-cart"></i> Buat Pesanan</h2>
+            <form id="order-form">
+                <input type="hidden" id="product-code">
+                <div class="form-group">
+                    <label for="product-name">Produk:</label>
+                    <input type="text" id="product-name" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Harga:</label>
+                    <input type="text" id="product-price" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="target-number">ID/Nomor Tujuan:</label>
+                    <input type="text" id="target-number" placeholder="Masukkan ID game atau nomor telepon" required>
+                    <small>Untuk Mobile Legends, gunakan format: 12345678|1234 (ID|Zone)</small>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-check"></i> Konfirmasi Pesanan
+                </button>
+            </form>
+            <div id="order-result" class="result-box"></div>
+        </div>
+    </div>
+
+    <section id="check-order" class="check-order">
+        <div class="container">
+            <h2 class="section-title">Cek Status Pesanan</h2>
+            <form id="check-order-form">
+                <div class="form-group">
+                    <label for="transaction-id"><i class="fas fa-receipt"></i> ID Transaksi:</label>
+                    <input type="text" id="transaction-id" placeholder="Masukkan ID transaksi" required>
+                </div>
+                <button type="submit" class="btn">
+                    <i class="fas fa-search"></i> Cek Status
+                </button>
+            </form>
+            <div id="order-status-result" class="result-box"></div>
+        </div>
+    </section>
+
+    <section id="deposit" class="deposit">
+        <div class="container">
+            <h2 class="section-title">Deposit Saldo</h2>
+            <form id="deposit-form">
+                <div class="form-group">
+                    <label for="deposit-amount"><i class="fas fa-money-bill-wave"></i> Jumlah (min. 500):</label>
+                    <input type="number" id="deposit-amount" min="500" placeholder="Masukkan jumlah deposit" required>
+                </div>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-plus"></i> Buat Deposit
+                </button>
+            </form>
+            <div id="deposit-result" class="result-box"></div>
+            
+            <div class="deposit-actions hidden" id="deposit-actions">
+                <h3><i class="fas fa-qrcode"></i> Pembayaran Deposit</h3>
+                <div class="qr-container" id="qr-container"></div>
+                <div class="action-buttons">
+                    <button id="check-deposit-status" class="btn">
+                        <i class="fas fa-sync"></i> Cek Status
+                    </button>
+                    <button id="cancel-deposit" class="btn btn-danger">
+                        <i class="fas fa-times"></i> Batalkan Deposit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="history" class="history">
+        <div class="container">
+            <h2 class="section-title">Riwayat Transaksi</h2>
+            <div class="text-center">
+                <button id="load-history" class="btn">
+                    <i class="fas fa-history"></i> Muat Riwayat
+                </button>
+            </div>
+            <div class="history-list" id="history-list"></div>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>GameTop</h3>
-                    <p>Premium game topup service with instant delivery and 24/7 customer support.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Games</a></li>
-                        <li><a href="#">Transactions</a></li>
-                        <li><a href="#">Deposit</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Us</h3>
-                    <ul>
-                        <li><i class="fas fa-envelope"></i> support@gametop.com</li>
-                        <li><i class="fas fa-phone"></i> +62 123 4567 890</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 GameTop. All Rights Reserved.</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-discord"></i></a>
-                </div>
-            </div>
+            <p>&copy; 2025 Game Top-up Center. Semua hak dilindungi undang-undang.</p>
+            <p>Powered by V-Pedia API</p>
         </div>
     </footer>
 
-    <script src="js/api.js"></script>
-    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Global variables
+            let currentDepositTrxId = null;
+            const API_BASE = 'http://localhost:3000/api'; // Ganti dengan URL server Anda
+            
+            // Load data saat halaman dimuat
+            loadCategories();
+            loadProviders();
+            loadProducts();
+            
+            // Event listeners
+            document.getElementById('apply-filter').addEventListener('click', loadProducts);
+            document.getElementById('check-order-form').addEventListener('submit', checkOrderStatus);
+            document.getElementById('deposit-form').addEventListener('submit', createDeposit);
+            document.getElementById('load-history').addEventListener('click', loadHistory);
+            
+            // Modal event listeners
+            document.querySelector('.close').addEventListener('click', closeModal);
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('order-modal');
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Deposit action buttons
+            document.getElementById('check-deposit-status').addEventListener('click', checkDepositStatus);
+            document.getElementById('cancel-deposit').addEventListener('click', cancelDeposit);
+            
+            // Functions
+            async function loadCategories() {
+                try {
+                    const response = await fetch(`${API_BASE}/categories`);
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        const select = document.getElementById('category-filter');
+                        data.data.forEach(category => {
+                            const option = document.createElement('option');
+                            option.value = category;
+                            option.textContent = category;
+                            select.appendChild(option);
+                        });
+                    } else {
+                        console.error('Gagal memuat kategori:', data.message);
+                    }
+                } catch (error) {
+                    console.error('Error loading categories:', error);
+                }
+            }
+            
+            async function loadProviders() {
+                try {
+                    const response = await fetch(`${API_BASE}/providers`);
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        const select = document.getElementById('provider-filter');
+                        data.data.forEach(provider => {
+                            const option = document.createElement('option');
+                            option.value = provider;
+                            option.textContent = provider;
+                            select.appendChild(option);
+                        });
+                    } else {
+                        console.error('Gagal memuat provider:', data.message);
+                    }
+                } catch (error) {
+                    console.error('Error loading providers:', error);
+                }
+            }
+            
+            async function loadProducts() {
+                const category = document.getElementById('category-filter').value;
+                const provider = document.getElementById('provider-filter').value;
+                const productList = document.getElementById('product-list');
+                
+                productList.innerHTML = '<div class="loading">Memuat produk...</div>';
+                
+                try {
+                    const params = new URLSearchParams();
+                    if (category) params.append('category', category);
+                    if (provider) params.append('provider', provider);
+                    
+                    const response = await fetch(`${API_BASE}/products?${params.toString()}`);
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        productList.innerHTML = '';
+                        
+                        if (data.data.length === 0) {
+                            productList.innerHTML = '<div class="no-products"><i class="fas fa-exclamation-circle"></i> Tidak ada produk ditemukan. Coba ubah filter Anda.</div>';
+                            return;
+                        }
+                        
+                        data.data.forEach(product => {
+                            const productCard = document.createElement('div');
+                            productCard.className = 'product-card';
+                            
+                            const statusClass = product.status === 'available' ? 'status-available' : 'status-unavailable';
+                            const isAvailable = product.status === 'available';
+                            
+                            productCard.innerHTML = `
+                                <div class="product-image">
+                                    <img src="${product.img_url || 'https://via.placeholder.com/300x200?text=Game+Image'}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/300x200?text=Game+Image'">
+                                </div>
+                                <div class="product-details">
+                                    <h3 class="product-name">${product.name}</h3>
+                                    <p class="product-category"><i class="fas fa-tag"></i> ${product.category}</p>
+                                    <p class="product-provider"><i class="fas fa-building"></i> ${product.provider}</p>
+                                    <div class="product-price">${product.price_formatted}</div>
+                                    <span class="product-status ${statusClass}">${product.status_emoji} ${product.status}</span>
+                                    <button class="btn btn-primary order-btn" data-code="${product.code}" data-name="${product.name}" data-price="${product.price_formatted}" ${!isAvailable ? 'disabled' : ''}>
+                                        <i class="fas fa-shopping-cart"></i> ${isAvailable ? 'Pesan Sekarang' : 'Tidak Tersedia'}
+                                    </button>
+                                </div>
+                            `;
+                            
+                            productList.appendChild(productCard);
+                            
+                            // Add event listener to the order button
+                            if (isAvailable) {
+                                const orderBtn = productCard.querySelector('.order-btn');
+                                orderBtn.addEventListener('click', function() {
+                                    openOrderModal(this.dataset.code, this.dataset.name, this.dataset.price);
+                                });
+                            }
+                        });
+                    } else {
+                        productList.innerHTML = `<div class="error"><i class="fas fa-exclamation-triangle"></i> Error: ${data.message}</div>`;
+                    }
+                } catch (error) {
+                    console.error('Error loading products:', error);
+                    productList.innerHTML = '<div class="error"><i class="fas fa-exclamation-triangle"></i> Gagal memuat produk. Silakan coba lagi nanti.</div>';
+                }
+            }
+            
+            function openOrderModal(code, name, price) {
+                document.getElementById('product-code').value = code;
+                document.getElementById('product-name').value = name;
+                document.getElementById('product-price').value = price;
+                document.getElementById('target-number').value = '';
+                document.getElementById('order-result').style.display = 'none';
+                
+                document.getElementById('order-modal').style.display = 'block';
+                
+                // Add submit event listener to the order form
+                document.getElementById('order-form').addEventListener('submit', submitOrder);
+            }
+            
+            function closeModal() {
+                document.getElementById('order-modal').style.display = 'none';
+                document.getElementById('order-form').removeEventListener('submit', submitOrder);
+            }
+            
+            async function submitOrder(event) {
+                event.preventDefault();
+                
+                const code = document.getElementById('product-code').value;
+                const target = document.getElementById('target-number').value;
+                const resultBox = document.getElementById('order-result');
+                
+                if (!code || !target) {
+                    showResult(resultBox, '<i class="fas fa-exclamation-triangle"></i> Harap isi semua field', 'error');
+                    return;
+                }
+                
+                try {
+                    const response = await fetch(`${API_BASE}/order`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ code, target })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        showResult(resultBox, `
+                            <h3><i class="fas fa-check-circle"></i> Pesanan Berhasil!</h3>
+                            <p><strong>ID Transaksi:</strong> ${data.data.reff_id}</p>
+                            <p><strong>Layanan:</strong> ${data.data.layanan}</p>
+                            <p><strong>Target:</strong> ${data.data.target}</p>
+                            <p><strong>Harga:</strong> Rp ${data.data.price.toLocaleString()}</p>
+                            <p><strong>Status:</strong> ${data.data.status}</p>
+                            <p><strong>Dibuat pada:</strong> ${data.data.created_at}</p>
+                            <p><em>Simpan ID Transaksi untuk mengecek status pesanan nanti.</em></p>
+                        `, 'success');
+                    } else {
+                        showResult(resultBox, `<i class="fas fa-exclamation-triangle"></i> Error: ${data.message}`, 'error');
+                    }
+                } catch (error) {
+                    console.error('Error submitting order:', error);
+                    showResult(resultBox, '<i class="fas fa-exclamation-triangle"></i> Gagal membuat pesanan. Silakan coba lagi nanti.', 'error');
+                }
+            }
+            
+            async function checkOrderStatus(event) {
+                event.preventDefault();
+                
+                const trxid = document.getElementById('transaction-id').value;
+                const resultBox = document.getElementById('order-status-result');
+                
+                if (!trxid) {
+                    showResult(resultBox, '<i class="fas fa-exclamation-triangle"></i> Harap masukkan ID transaksi', 'error');
+                    return;
+                }
+                
+                try {
+                    const response = await fetch(`${API_BASE}/order/status?trxid=${trxid}`);
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        const statusIcon = data.data.status === 'success' ? 'fas fa-check-circle' : 
+                                         data.data.status === 'pending' ? 'fas fa-clock' : 'fas fa-times-circle';
+                        
+                        showResult(resultBox, `
+                            <h3><i class="${statusIcon}"></i> Status Transaksi</h3>
+                            <p><strong>ID Transaksi:</strong> ${data.data.trxid}</p>
+                            <p><strong>Status:</strong> ${data.data.status}</p>
+                        `, 'success');
+                    } else {
+                        showResult(resultBox, `<i class="fas fa-exclamation-triangle"></i> Error: ${data.message}`, 'error');
+                    }
+                } catch (error) {
+                    console.error('Error checking order status:', error);
+                    showResult(resultBox, '<i class="fas fa-exclamation-triangle"></i> Gagal mengecek status pesanan. Silakan coba lagi nanti.', 'error');
+                }
+            }
+            
+            async function createDeposit(event) {
+                event.preventDefault();
+                
+                const nominal = document.getElementById('deposit-amount').value;
+                const resultBox = document.getElementById('deposit-result');
+                
+                if (!nominal || nominal < 500) {
+                    showResult(resultBox, '<i class="fas fa-exclamation-triangle"></i> Harap masukkan jumlah yang valid (minimum 500)', 'error');
+                    return;
+                }
+                
+                try {
+                    const response = await fetch(`${API_BASE}/deposit/create`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ nominal })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        currentDepositTrxId = data.data.id;
+                        
+                        showResult(resultBox, `
+                            <h3><i class="fas fa-check-circle"></i> Deposit Dibuat</h3>
+                            <p><strong>ID Transaksi:</strong> ${data.data.reff_id}</p>
+                            <p><strong>Jumlah:</strong> Rp ${data.data.nominal.toLocaleString()}</p>
+                            <p><strong>Biaya Admin:</strong> Rp ${data.data.fee.toLocaleString()}</p>
+                            <p><strong>Saldo yang diterima:</strong> Rp ${data.data.get_balance.toLocaleString()}</p>
+                            <p><strong>Status:</strong> ${data.data.status}</p>
+                            <p><strong>Dibuat pada:</strong> ${data.data.created_at}</p>
+                            <p><strong>Berakhir pada:</strong> ${data.data.expired_at}</p>
+                            <p><em>Silakan scan QR code di bawah untuk menyelesaikan pembayaran.</em></p>
+                        `, 'success');
+                        
+                        // Show QR code and deposit actions
+                        const qrContainer = document.getElementById('qr-container');
+                        qrContainer.innerHTML = `<img src="${data.data.qr_image}" alt="QR Code Pembayaran">`;
+                        document.getElementById('deposit-actions').classList.remove('hidden');
+                    } else {
+                        showResult(resultBox, `<i class="fas fa-exclamation-triangle"></i> Error: ${data.message}`, 'error');
+                    }
+                } catch (error) {
+                    console.error('Error creating deposit:', error);
+                    showResult(resultBox, '<i class="fas fa-exclamation-triangle"></i> Gagal membuat deposit. Silakan coba lagi nanti.', 'error');
+                }
+            }
+            
+            async function checkDepositStatus() {
+                if (!currentDepositTrxId) {
+                    alert('Tidak ada transaksi deposit aktif');
+                    return;
+                }
+                
+                const resultBox = document.getElementById('deposit-result');
+                
+                try {
+                    const response = await fetch(`${API_BASE}/deposit/status?trxid=${currentDepositTrxId}`);
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        const statusIcon = data.data.status === 'success' ? 'fas fa-check-circle' : 
+                                         data.data.status === 'pending' ? 'fas fa-clock' : 'fas fa-times-circle';
+                        
+                        showResult(resultBox, `
+                            <h3><i class="${statusIcon}"></i> Status Deposit</h3>
+                            <p><strong>ID Transaksi:</strong> ${data.data.trxid}</p>
+                            <p><strong>Status:</strong> ${data.data.status}</p>
+                            ${data.data.saldo_masuk ? `<p><strong>Saldo masuk:</strong> Rp ${parseInt(data.data.saldo_masuk).toLocaleString()}</p>` : ''}
+                        `, 'success');
+                        
+                        if (data.data.status === 'success') {
+                            document.getElementById('deposit-actions').classList.add('hidden');
+                            currentDepositTrxId = null;
+                        }
+                    } else {
+                        showResult(resultBox, `<i class="fas fa-exclamation-triangle"></i> Error: ${data.message}`, 'error');
+                    }
+                } catch (error) {
+                    console.error('Error checking deposit status:', error);
+                    showResult(resultBox, '<i class="fas fa-exclamation-triangle"></i> Gagal mengecek status deposit. Silakan coba lagi nanti.', 'error');
+                }
+            }
+            
+            async function cancelDeposit() {
+                if (!currentDepositTrxId) {
+                    alert('Tidak ada transaksi deposit aktif');
+                    return;
+                }
+                
+                if (!confirm('Apakah Anda yakin ingin membatalkan deposit ini?')) {
+                    return;
+                }
+                
+                const resultBox = document.getElementById('deposit-result');
+                
+                try {
+                    const response = await fetch(`${API_BASE}/deposit/cancel`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ trxid: currentDepositTrxId })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        showResult(resultBox, `
+                            <h3><i class="fas fa-times-circle"></i> Deposit Dibatalkan</h3>
+                            <p><strong>ID Transaksi:</strong> ${data.data.trxid}</p>
+                            <p><strong>Status:</strong> ${data.data.status}</p>
+                            <p><strong>Dibatalkan pada:</strong> ${data.data.created_at}</p>
+                        `, 'info');
+                        
+                        document.getElementById('deposit-actions').classList.add('hidden');
+                        currentDepositTrxId = null;
+                    } else {
+                        showResult(resultBox, `<i class="fas fa-exclamation-triangle"></i> Error: ${data.message}`, 'error');
+                    }
+                } catch (error) {
+                    console.error('Error cancelling deposit:', error);
+                    showResult(resultBox, '<i class="fas fa-exclamation-triangle"></i> Gagal membatalkan deposit. Silakan coba lagi nanti.', 'error');
+                }
+            }
+            
+            async function loadHistory() {
+                const historyList = document.getElementById('history-list');
+                historyList.innerHTML = '<div class="loading">Memuat riwayat transaksi...</div>';
+                
+                try {
+                    const response = await fetch(`${API_BASE}/history`);
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        historyList.innerHTML = '';
+                        
+                        if (data.history.length === 0) {
+                            historyList.innerHTML = '<div class="no-history"><i class="fas fa-history"></i> Tidak ada riwayat transaksi ditemukan.</div>';
+                            return;
+                        }
+                        
+                        data.history.forEach(item => {
+                            const historyItem = document.createElement('div');
+                            historyItem.className = 'history-item';
+                            
+                            const date = new Date(item.tanggal);
+                            const formattedDate = date.toLocaleDateString('id-ID') + ' ' + date.toLocaleTimeString('id-ID');
+                            
+                            const statusClass = item.status === 'Sukses' ? 'status-success' : 
+                                               item.status === 'Pending' ? 'status-pending' : 'status-failed';
+                            
+                            const statusIcon = item.status === 'Sukses' ? 'fas fa-check-circle' : 
+                                             item.status === 'Pending' ? 'fas fa-clock' : 'fas fa-times-circle';
+                            
+                            historyItem.innerHTML = `
+                                <div class="history-details">
+                                    <div class="history-activity"><i class="fas fa-receipt"></i> ${item.aktivitas}</div>
+                                    <div class="history-date"><i class="fas fa-calendar"></i> ${formattedDate}</div>
+                                    <div class="history-code"><i class="fas fa-hashtag"></i> ${item.code}</div>
+                                </div>
+                                <div class="history-amount">Rp ${item.nominal.toLocaleString()}</div>
+                                <div class="history-status ${statusClass}"><i class="${statusIcon}"></i> ${item.status}</div>
+                            `;
+                            
+                            historyList.appendChild(historyItem);
+                        });
+                    } else {
+                        historyList.innerHTML = `<div class="error"><i class="fas fa-exclamation-triangle"></i> Error: ${data.message}</div>`;
+                    }
+                } catch (error) {
+                    console.error('Error loading history:', error);
+                    historyList.innerHTML = '<div class="error"><i class="fas fa-exclamation-triangle"></i> Gagal memuat riwayat transaksi. Silakan coba lagi nanti.</div>';
+                }
+            }
+            
+            function showResult(element, message, type) {
+                element.innerHTML = message;
+                element.className = `result-box result-${type}`;
+                element.style.display = 'block';
+            }
+            
+            // Smooth scrolling untuk navigasi
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active link
+                    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
