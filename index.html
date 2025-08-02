@@ -1,626 +1,134 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V-Pedia Topup - Platform Topup Game Terpercaya</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>COMINGSOON</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        :root {
+            --primary: #6C5CE7;
+            --secondary: #FD79A8;
+            --accent: #00CEFF;
+            --dark: #2D3436;
+            --light: #F9F9F9;
         }
-        .card-hover {
-            transition: all 0.3s ease;
+        
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: var(--light);
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            position: relative;
         }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        
+        .main-text {
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            color: transparent;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: gradient 8s ease infinite;
+            margin: 0;
+            line-height: 0.9;
+            letter-spacing: -3px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
         }
-        .loading {
-            display: none;
+        
+        .sub-text {
+            font-family: 'Roboto', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: 300;
+            color: var(--dark);
+            opacity: 0.8;
+            margin-top: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 80%;
         }
-        .loading.show {
-            display: block;
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        .product-grid {
-            max-height: 400px;
-            overflow-y: auto;
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            z-index: 1;
+            filter: blur(1px);
         }
-        .selected-product {
-            border: 2px solid #667eea;
-            background: #f0f4ff;
+        
+        .shape-1 {
+            width: 40vmax;
+            height: 40vmax;
+            background: var(--primary);
+            top: -20vmax;
+            left: -20vmax;
+            animation: float 15s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            width: 30vmax;
+            height: 30vmax;
+            background: var(--secondary);
+            bottom: -15vmax;
+            right: -15vmax;
+            animation: float 18s ease-in-out infinite reverse;
+        }
+        
+        .shape-3 {
+            width: 20vmax;
+            height: 20vmax;
+            background: var(--accent);
+            top: 40%;
+            right: 10%;
+            animation: float 12s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(5vmax, 5vmax) rotate(180deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+        
+        /* Glow effect */
+        .main-text::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            background-size: inherit;
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0.3;
+            animation: gradient 8s ease infinite;
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Header -->
-    <header class="gradient-bg text-white py-6">
-        <div class="container mx-auto px-4">
-            <div class="text-center">
-                <h1 class="text-4xl font-bold mb-2">
-                    <i class="fas fa-gamepad mr-3"></i>V-Pedia Topup
-                </h1>
-                <p class="text-xl opacity-90">Platform Topup Game Terpercaya & Terlengkap</p>
-            </div>
-        </div>
-    </header>
-
-    <!-- Navigation Tabs -->
-    <div class="container mx-auto px-4 py-6">
-        <div class="flex justify-center mb-8">
-            <div class="bg-white rounded-lg shadow-lg p-1">
-                <button onclick="showTab('topup')" id="tab-topup" class="tab-btn px-6 py-3 rounded-lg font-semibold transition-all bg-blue-500 text-white">
-                    <i class="fas fa-gamepad mr-2"></i>Topup Game
-                </button>
-                <button onclick="showTab('deposit')" id="tab-deposit" class="tab-btn px-6 py-3 rounded-lg font-semibold transition-all text-gray-600 hover:text-blue-500">
-                    <i class="fas fa-credit-card mr-2"></i>Deposit Saldo
-                </button>
-                <button onclick="showTab('status')" id="tab-status" class="tab-btn px-6 py-3 rounded-lg font-semibold transition-all text-gray-600 hover:text-blue-500">
-                    <i class="fas fa-search mr-2"></i>Cek Status
-                </button>
-            </div>
-        </div>
-
-        <!-- Topup Tab -->
-        <div id="content-topup" class="tab-content">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Filter Section -->
-                <div class="lg:col-span-2 space-y-6">
-                    <div class="bg-white rounded-lg shadow-lg p-6">
-                        <h3 class="text-xl font-bold mb-4">
-                            <i class="fas fa-filter mr-2 text-blue-500"></i>Filter Produk
-                        </h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
-                                <select id="categorySelect" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                    <option value="">Pilih Kategori</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Provider</label>
-                                <select id="providerSelect" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                    <option value="">Pilih Provider</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button onclick="loadProducts()" class="mt-4 w-full bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition-colors">
-                            <i class="fas fa-search mr-2"></i>Cari Produk
-                        </button>
-                    </div>
-
-                    <!-- Products Section -->
-                    <div class="bg-white rounded-lg shadow-lg p-6">
-                        <h3 class="text-xl font-bold mb-4">
-                            <i class="fas fa-shopping-cart mr-2 text-blue-500"></i>Pilih Produk
-                        </h3>
-                        <div id="loadingProducts" class="loading text-center py-8">
-                            <i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i>
-                            <p class="mt-2 text-gray-600">Memuat produk...</p>
-                        </div>
-                        <div id="productsGrid" class="product-grid grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="text-center py-8 text-gray-500">
-                                <i class="fas fa-box-open text-4xl mb-4"></i>
-                                <p>Pilih kategori atau provider untuk melihat produk</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Order Section -->
-                <div class="space-y-6">
-                    <div class="bg-white rounded-lg shadow-lg p-6">
-                        <h3 class="text-xl font-bold mb-4">
-                            <i class="fas fa-receipt mr-2 text-blue-500"></i>Detail Pesanan
-                        </h3>
-                        <div id="selectedProductInfo" class="mb-4 p-4 bg-gray-50 rounded-lg hidden">
-                            <!-- Selected product info will be inserted here -->
-                        </div>
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">ID/Nomor Tujuan</label>
-                                <input type="text" id="targetInput" placeholder="Masukkan ID game atau nomor" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                <p class="text-xs text-gray-500 mt-1">Untuk Mobile Legend: ID|Zone (contoh: 12345678|1234)</p>
-                            </div>
-                            <button onclick="createOrder()" id="orderBtn" class="w-full bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 transition-colors disabled:bg-gray-400" disabled>
-                                <i class="fas fa-shopping-cart mr-2"></i>Buat Pesanan
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Transaction Result -->
-                    <div id="transactionResult" class="bg-white rounded-lg shadow-lg p-6 hidden">
-                        <h3 class="text-xl font-bold mb-4 text-green-600">
-                            <i class="fas fa-check-circle mr-2"></i>Transaksi Berhasil
-                        </h3>
-                        <div id="transactionDetails">
-                            <!-- Transaction details will be inserted here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Deposit Tab -->
-        <div id="content-deposit" class="tab-content hidden">
-            <div class="max-w-2xl mx-auto">
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <h3 class="text-xl font-bold mb-4">
-                        <i class="fas fa-wallet mr-2 text-blue-500"></i>Deposit Saldo
-                    </h3>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Nominal Deposit (Min. Rp 500)</label>
-                            <input type="number" id="depositAmount" placeholder="Masukkan nominal" min="500" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <button onclick="createDeposit()" class="w-full bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition-colors">
-                            <i class="fas fa-plus mr-2"></i>Buat Deposit
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Deposit Result -->
-                <div id="depositResult" class="bg-white rounded-lg shadow-lg p-6 mt-6 hidden">
-                    <h3 class="text-xl font-bold mb-4 text-blue-600">
-                        <i class="fas fa-qrcode mr-2"></i>QR Code Pembayaran
-                    </h3>
-                    <div id="depositDetails">
-                        <!-- Deposit details will be inserted here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Status Tab -->
-        <div id="content-status" class="tab-content hidden">
-            <div class="max-w-2xl mx-auto">
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <h3 class="text-xl font-bold mb-4">
-                        <i class="fas fa-search mr-2 text-blue-500"></i>Cek Status Transaksi
-                    </h3>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">ID Transaksi</label>
-                            <input type="text" id="statusTrxId" placeholder="Masukkan ID transaksi" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <button onclick="checkStatus()" class="w-full bg-purple-500 text-white py-3 px-6 rounded-lg hover:bg-purple-600 transition-colors">
-                            <i class="fas fa-search mr-2"></i>Cek Status
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Status Result -->
-                <div id="statusResult" class="bg-white rounded-lg shadow-lg p-6 mt-6 hidden">
-                    <h3 class="text-xl font-bold mb-4">
-                        <i class="fas fa-info-circle mr-2 text-purple-500"></i>Status Transaksi
-                    </h3>
-                    <div id="statusDetails">
-                        <!-- Status details will be inserted here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed top-4 right-4 bg-white border-l-4 border-blue-500 rounded-lg shadow-lg p-4 transform translate-x-full transition-transform duration-300 z-50">
-        <div class="flex items-center">
-            <i id="toastIcon" class="fas fa-info-circle text-blue-500 mr-3"></i>
-            <span id="toastMessage">Pesan notifikasi</span>
-        </div>
-    </div>
-
-    <script>
-        const API_BASE = window.location.origin + '/api';
-        let selectedProduct = null;
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            loadCategories();
-            loadProviders();
-        });
-
-        // Tab Management
-        function showTab(tabName) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.add('hidden');
-            });
-            
-            // Remove active class from all buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('bg-blue-500', 'text-white');
-                btn.classList.add('text-gray-600');
-            });
-            
-            // Show selected tab
-            document.getElementById(`content-${tabName}`).classList.remove('hidden');
-            
-            // Add active class to selected button
-            const activeBtn = document.getElementById(`tab-${tabName}`);
-            activeBtn.classList.add('bg-blue-500', 'text-white');
-            activeBtn.classList.remove('text-gray-600');
-        }
-
-        // Toast Notification
-        function showToast(message, type = 'info') {
-            const toast = document.getElementById('toast');
-            const icon = document.getElementById('toastIcon');
-            const messageEl = document.getElementById('toastMessage');
-            
-            messageEl.textContent = message;
-            
-            // Set icon and color based on type
-            switch(type) {
-                case 'success':
-                    icon.className = 'fas fa-check-circle text-green-500 mr-3';
-                    toast.className = toast.className.replace('border-blue-500', 'border-green-500');
-                    break;
-                case 'error':
-                    icon.className = 'fas fa-exclamation-circle text-red-500 mr-3';
-                    toast.className = toast.className.replace('border-blue-500', 'border-red-500');
-                    break;
-                default:
-                    icon.className = 'fas fa-info-circle text-blue-500 mr-3';
-                    toast.className = toast.className.replace(/border-(green|red)-500/, 'border-blue-500');
-            }
-            
-            // Show toast
-            toast.classList.remove('translate-x-full');
-            
-            // Hide after 3 seconds
-            setTimeout(() => {
-                toast.classList.add('translate-x-full');
-            }, 3000);
-        }
-
-        // API Functions
-        async function handleApiRequest(url, options = {}) {
-          try {
-            const response = await fetch(url, options);
-            
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
-            const data = await response.json();
-            return data;
-          } catch (error) {
-            console.error('API Request failed:', error);
-            showToast('Koneksi bermasalah, silakan coba lagi', 'error');
-            throw error;
-          }
-        }
-
-        async function loadCategories() {
-          try {
-            const data = await handleApiRequest(`${API_BASE}/categories`);
-            
-            if (data.success && data.data) {
-              const select = document.getElementById('categorySelect');
-              select.innerHTML = '<option value="">Semua Kategori</option>';
-              data.data.forEach(category => {
-                select.innerHTML += `<option value="${category}">${category}</option>`;
-              });
-            } else {
-              showToast('Gagal memuat kategori: ' + (data.message || 'Unknown error'), 'error');
-            }
-          } catch (error) {
-            console.error('Error loading categories:', error);
-          }
-        }
-
-        async function loadProviders() {
-            try {
-                const response = await fetch(`${API_BASE}/providers`);
-                const data = await response.json();
-                
-                if (data.success) {
-                    const select = document.getElementById('providerSelect');
-                    select.innerHTML = '<option value="">Semua Provider</option>';
-                    data.data.forEach(provider => {
-                        select.innerHTML += `<option value="${provider}">${provider}</option>`;
-                    });
-                } else {
-                    showToast('Gagal memuat provider: ' + data.message, 'error');
-                }
-            } catch (error) {
-                showToast('Error memuat provider', 'error');
-                console.error('Error:', error);
-            }
-        }
-
-        async function loadProducts() {
-            const category = document.getElementById('categorySelect').value;
-            const provider = document.getElementById('providerSelect').value;
-            
-            if (!category && !provider) {
-                showToast('Pilih kategori atau provider terlebih dahulu', 'error');
-                return;
-            }
-
-            const loadingEl = document.getElementById('loadingProducts');
-            const gridEl = document.getElementById('productsGrid');
-            
-            loadingEl.classList.add('show');
-            gridEl.innerHTML = '';
-
-            try {
-                let url = `${API_BASE}/products?`;
-                if (category) url += `category=${encodeURIComponent(category)}&`;
-                if (provider) url += `provider=${encodeURIComponent(provider)}&`;
-
-                const response = await fetch(url);
-                const data = await response.json();
-                
-                loadingEl.classList.remove('show');
-                
-                if (data.success && data.data.length > 0) {
-                    gridEl.innerHTML = data.data.map(product => `
-                        <div class="product-card card-hover bg-white border rounded-lg p-4 cursor-pointer" onclick="selectProduct('${product.code}')">
-                            <div class="flex items-center space-x-3">
-                                <img src="${product.img_url || '/placeholder.svg?height=48&width=48'}" alt="${product.name}" class="w-12 h-12 rounded-lg object-cover">
-                                <div class="flex-1">
-                                    <h4 class="font-semibold text-sm">${product.name}</h4>
-                                    <p class="text-xs text-gray-500">${product.provider}</p>
-                                    <div class="flex items-center justify-between mt-2">
-                                        <span class="font-bold text-blue-600">${product.price_formatted}</span>
-                                        <span class="text-xs px-2 py-1 rounded-full ${product.status === 'available' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
-                                            ${product.status_emoji} ${product.status}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `).join('');
-                    
-                    // Store products data for selection
-                    window.productsData = data.data;
-                } else {
-                    gridEl.innerHTML = `
-                        <div class="col-span-2 text-center py-8 text-gray-500">
-                            <i class="fas fa-exclamation-triangle text-4xl mb-4"></i>
-                            <p>Tidak ada produk ditemukan</p>
-                        </div>
-                    `;
-                }
-            } catch (error) {
-                loadingEl.classList.remove('show');
-                showToast('Error memuat produk', 'error');
-                console.error('Error:', error);
-            }
-        }
-
-        function selectProduct(productCode) {
-            if (!window.productsData) return;
-            
-            selectedProduct = window.productsData.find(p => p.code === productCode);
-            
-            // Remove previous selection
-            document.querySelectorAll('.product-card').forEach(card => {
-                card.classList.remove('selected-product');
-            });
-            
-            // Add selection to clicked product
-            event.currentTarget.classList.add('selected-product');
-            
-            // Update selected product info
-            const infoEl = document.getElementById('selectedProductInfo');
-            infoEl.innerHTML = `
-                <div class="flex items-center space-x-3">
-                    <img src="${selectedProduct.img_url || '/placeholder.svg?height=40&width=40'}" alt="${selectedProduct.name}" class="w-10 h-10 rounded object-cover">
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-sm">${selectedProduct.name}</h4>
-                        <p class="text-xs text-gray-500">${selectedProduct.provider}</p>
-                    </div>
-                    <span class="font-bold text-blue-600">${selectedProduct.price_formatted}</span>
-                </div>
-            `;
-            infoEl.classList.remove('hidden');
-            
-            // Enable order button
-            document.getElementById('orderBtn').disabled = false;
-            
-            showToast('Produk dipilih: ' + selectedProduct.name, 'success');
-        }
-
-        async function createOrder() {
-            if (!selectedProduct) {
-                showToast('Pilih produk terlebih dahulu', 'error');
-                return;
-            }
-            
-            const target = document.getElementById('targetInput').value.trim();
-            if (!target) {
-                showToast('Masukkan ID/nomor tujuan', 'error');
-                return;
-            }
-
-            const btn = document.getElementById('orderBtn');
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Memproses...';
-
-            try {
-                const response = await fetch(`${API_BASE}/order/create`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        code: selectedProduct.code,
-                        target: target
-                    })
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    const resultEl = document.getElementById('transactionResult');
-                    const detailsEl = document.getElementById('transactionDetails');
-                    
-                    detailsEl.innerHTML = `
-                        <div class="space-y-3 text-sm">
-                            <div class="flex justify-between">
-                                <span>ID Transaksi:</span>
-                                <span class="font-mono font-bold">${data.data.id}</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Layanan:</span>
-                                <span>${data.data.layanan}</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Target:</span>
-                                <span>${data.data.target}</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Harga:</span>
-                                <span class="font-bold">Rp ${data.data.price.toLocaleString()}</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span>Status:</span>
-                                <span class="px-3 py-1 rounded-full text-xs ${getStatusClass(data.data.status)}">
-                                    ${data.data.status.toUpperCase()}
-                                </span>
-                            </div>
-                        </div>
-                    `;
-                    
-                    resultEl.classList.remove('hidden');
-                    showToast('Pesanan berhasil dibuat!', 'success');
-                } else {
-                    showToast('Gagal membuat pesanan: ' + data.message, 'error');
-                }
-            } catch (error) {
-                showToast('Error membuat pesanan', 'error');
-                console.error('Error:', error);
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-shopping-cart mr-2"></i>Buat Pesanan';
-            }
-        }
-
-        async function createDeposit() {
-            const amount = document.getElementById('depositAmount').value;
-            
-            if (!amount || parseInt(amount) < 500) {
-                showToast('Minimal deposit Rp 500', 'error');
-                return;
-            }
-
-            try {
-                const response = await fetch(`${API_BASE}/deposit/create`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ nominal: parseInt(amount) })
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    const resultEl = document.getElementById('depositResult');
-                    const detailsEl = document.getElementById('depositDetails');
-                    
-                    detailsEl.innerHTML = `
-                        <div class="text-center mb-4">
-                            <img src="${data.data.qr_image}" alt="QR Code" class="mx-auto w-48 h-48 border rounded-lg">
-                        </div>
-                        <div class="space-y-3 text-sm">
-                            <div class="flex justify-between">
-                                <span>ID Deposit:</span>
-                                <span class="font-mono font-bold">${data.data.id}</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Nominal:</span>
-                                <span>Rp ${data.data.nominal.toLocaleString()}</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Fee:</span>
-                                <span>Rp ${data.data.fee.toLocaleString()}</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Saldo Diterima:</span>
-                                <span class="font-bold text-green-600">Rp ${data.data.get_balance.toLocaleString()}</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span>Status:</span>
-                                <span class="px-3 py-1 rounded-full text-xs ${getStatusClass(data.data.status)}">
-                                    ${data.data.status.toUpperCase()}
-                                </span>
-                            </div>
-                            <div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                                <p class="text-xs text-yellow-800">
-                                    <i class="fas fa-clock mr-1"></i>
-                                    Expired: ${new Date(data.data.expired_at).toLocaleString()}
-                                </p>
-                            </div>
-                        </div>
-                    `;
-                    
-                    resultEl.classList.remove('hidden');
-                    showToast('Deposit berhasil dibuat!', 'success');
-                } else {
-                    showToast('Gagal membuat deposit: ' + data.message, 'error');
-                }
-            } catch (error) {
-                showToast('Error membuat deposit', 'error');
-                console.error('Error:', error);
-            }
-        }
-
-        async function checkStatus() {
-            const trxId = document.getElementById('statusTrxId').value.trim();
-            
-            if (!trxId) {
-                showToast('Masukkan ID transaksi', 'error');
-                return;
-            }
-
-            try {
-                const response = await fetch(`${API_BASE}/order/check?trxid=${trxId}`);
-                const data = await response.json();
-                
-                if (data.success) {
-                    const resultEl = document.getElementById('statusResult');
-                    const detailsEl = document.getElementById('statusDetails');
-                    
-                    detailsEl.innerHTML = `
-                        <div class="space-y-3 text-sm">
-                            <div class="flex justify-between">
-                                <span>ID Transaksi:</span>
-                                <span class="font-mono font-bold">${data.data.trxid}</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span>Status:</span>
-                                <span class="px-3 py-1 rounded-full text-xs ${getStatusClass(data.data.status)}">
-                                    ${data.data.status.toUpperCase()}
-                                </span>
-                            </div>
-                        </div>
-                    `;
-                    
-                    resultEl.classList.remove('hidden');
-                    showToast('Status berhasil diambil!', 'success');
-                } else {
-                    showToast('Gagal mengecek status: ' + data.message, 'error');
-                }
-            } catch (error) {
-                showToast('Error mengecek status', 'error');
-                console.error('Error:', error);
-            }
-        }
-
-        function getStatusClass(status) {
-            switch(status) {
-                case 'success':
-                    return 'bg-green-100 text-green-800';
-                case 'pending':
-                    return 'bg-yellow-100 text-yellow-800';
-                case 'failed':
-                case 'cancel':
-                    return 'bg-red-100 text-red-800';
-                default:
-                    return 'bg-gray-100 text-gray-800';
-            }
-        }
-    </script>
+<body>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    
+    <h1 class="main-text">COMINGSON</h1>
+    <p class="sub-text">PRESET XML BELUM TERSEDIA</p>
 </body>
 </html>
